@@ -6,121 +6,133 @@
     <title>Grant Search Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .search-container {
+        .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        .result-card {
+        .search-result {
             transition: all 0.3s ease;
         }
-        .result-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .search-result:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .loading-spinner {
-            border: 3px solid #f3f4f6;
-            border-top: 3px solid #3b82f6;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .distance-bar {
-            transition: width 0.6s ease-in-out;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <i class="fas fa-search-dollar text-2xl text-indigo-600 mr-3"></i>
-                    <h1 class="text-xl font-bold text-gray-900">Grant Search Portal</h1>
-                </div>
-                <div class="text-sm text-gray-500">
-                    <i class="fas fa-database mr-1"></i>
-                    Research Database
-                </div>
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-search-dollar text-5xl mr-4"></i>
+                <h1 class="text-4xl md:text-5xl font-bold">Grant Search Portal</h1>
             </div>
+            <p class="text-center text-lg opacity-90">Discover funding opportunities with advanced semantic search</p>
         </div>
     </header>
 
-    <!-- Hero Section with Search -->
-    <section class="search-container py-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-white mb-4">
-                Discover Research Grants
-            </h2>
-            <p class="text-xl text-indigo-100 mb-8">
-                Search through thousands of research grants to find opportunities that match your interests
-            </p>
-            
-            <div class="max-w-2xl mx-auto">
-                <div class="relative">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        placeholder="Enter keywords to search for grants..."
-                        class="w-full px-6 py-4 text-lg rounded-full border-0 shadow-lg focus:ring-4 focus:ring-white focus:ring-opacity-20 focus:outline-none"
-                    >
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Search Section -->
+        <div class="max-w-4xl mx-auto mb-12">
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow relative">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Enter keywords to search for grants..."
+                            class="w-full pl-12 pr-4 py-4 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none text-lg transition-all"
+                        />
+                    </div>
                     <button 
-                        id="searchBtn" 
-                        class="absolute right-2 top-2 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-2 rounded-full font-medium transition duration-200 flex items-center"
+                        id="searchButton"
+                        class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
                     >
-                        <i class="fas fa-search mr-2"></i>
-                        Search
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
                     </button>
+                </div>
+                
+                <!-- Search Stats -->
+                <div id="searchStats" class="mt-4 text-center text-gray-600 hidden">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    <span id="resultCount"></span>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Search Status -->
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-        <div id="searchStatus" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <div class="flex items-center">
-                <div class="loading-spinner mr-3"></div>
-                <span class="text-blue-800">Searching grants database...</span>
-            </div>
-        </div>
-        
-        <div id="errorMessage" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-            <div class="flex items-center">
-                <i class="fas fa-exclamation-triangle text-red-500 mr-3"></i>
-                <span class="text-red-800" id="errorText"></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Results Section -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div id="resultsContainer" class="hidden">
-            <div class="flex items-center justify-between mb-6">
-                <h3 class="text-2xl font-bold text-gray-900">Search Results</h3>
-                <div id="resultCount" class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full"></div>
-            </div>
-            
-            <div id="resultsGrid" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Results will be populated here -->
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="hidden flex justify-center items-center py-12">
+            <div class="text-center">
+                <div class="loading-spinner mx-auto mb-4"></div>
+                <p class="text-gray-600 text-lg">Searching for grants...</p>
             </div>
         </div>
 
-        <!-- Welcome Message -->
-        <div id="welcomeMessage" class="text-center py-16">
-            <i class="fas fa-search text-6xl text-gray-300 mb-6"></i>
-            <h3 class="text-2xl font-semibold text-gray-700 mb-4">Ready to Find Your Next Grant?</h3>
-            <p class="text-gray-500 max-w-md mx-auto">
-                Enter keywords related to your research interests in the search box above to discover relevant funding opportunities.
-            </p>
+        <!-- Error Message -->
+        <div id="errorMessage" class="hidden max-w-4xl mx-auto mb-8">
+            <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-6 shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle text-red-500 text-2xl mr-4"></i>
+                    <div>
+                        <h3 class="text-red-800 font-semibold text-lg">Error</h3>
+                        <p id="errorText" class="text-red-700 mt-1"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="hidden max-w-4xl mx-auto mb-8">
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-lg p-6 shadow-md">
+                <div class="flex items-center">
+                    <i class="fas fa-search text-yellow-500 text-2xl mr-4"></i>
+                    <div>
+                        <h3 class="text-yellow-800 font-semibold text-lg">No Results Found</h3>
+                        <p class="text-yellow-700 mt-1">Try different keywords or broaden your search terms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Grid -->
+        <div id="resultsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Results will be inserted here dynamically -->
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-400">
+                <i class="fas fa-database mr-2"></i>
+                Powered by Semantic Search Technology
+            </p>
+            <p class="text-gray-500 text-sm mt-2">© 2025 Grant Search Portal. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="app.js"></script>
 </body>

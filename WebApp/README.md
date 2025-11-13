@@ -1,29 +1,43 @@
-# Grant Search Portal
+# Grant Search Web Application
 
-A modern, responsive web application for searching research grants using a REST API backend.
+A modern, responsive web application for searching grants using semantic search technology.
 
 ## Features
 
-- **Modern UI**: Built with Tailwind CSS for a clean, professional look
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Real-time Search**: Instant search results with loading indicators
-- **Relevance Scoring**: Visual relevance indicators based on search distance
-- **Error Handling**: Comprehensive error handling with user-friendly messages
-- **Interactive Elements**: Hover effects and smooth animations
+- 🔍 **Semantic Search**: Search grants using natural language queries
+- 🎨 **Modern UI**: Built with Tailwind CSS for a clean, professional look
+- 📱 **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- ⚡ **Real-time Search**: Instant results as you search
+- 📊 **Relevance Scoring**: Visual indicators showing match relevance
+- 🎯 **Clean Interface**: Intuitive and easy to use
 
 ## Technologies Used
 
-- **HTML5**: Semantic markup and modern web standards
-- **CSS3**: Tailwind CSS framework for styling
-- **JavaScript**: ES6+ features for modern functionality
-- **jQuery**: DOM manipulation and AJAX requests
-- **Font Awesome**: Professional icons
+- **HTML5**: Semantic markup
+- **CSS3**: Tailwind CSS for styling
+- **JavaScript**: jQuery for DOM manipulation and AJAX
+- **Font Awesome**: Icons
+- **REST API**: Connects to backend grant search service
 
-## API Integration
+## Setup and Usage
 
-The application connects to a REST API endpoint at:
+### Prerequisites
+
+- A web browser (Chrome, Firefox, Safari, Edge)
+- Backend API running on `http://localhost:5000`
+
+### Running the Application
+
+1. Open `index.html` in your web browser
+2. Enter search keywords in the search box
+3. Click "Search" or press Enter
+4. View the results with relevance scores
+
+### API Endpoint
+
+The application connects to:
 ```
-GET http://localhost:5000/api/GrantSearch?SearchText='<search_term>'
+GET http://localhost:5000/api/GrantSearch?SearchText=<search_text>
 ```
 
 Expected response format:
@@ -39,86 +53,59 @@ Expected response format:
 }
 ```
 
-## Getting Started
-
-### Prerequisites
-
-- A web server (for local development)
-- The grants database API running on localhost:5000
-
-### Running the Application
-
-1. **Using a simple HTTP server:**
-   ```bash
-   # Using Node.js http-server (if installed globally)
-   npx http-server
-   
-   # Using Python 3
-   python -m http.server 8000
-   
-   # Using Python 2
-   python -m SimpleHTTPServer 8000
-   ```
-
-2. **Using VS Code Live Server:**
-   - Install the "Live Server" extension
-   - Right-click on `index.html` and select "Open with Live Server"
-
-3. **Open in browser:**
-   - Navigate to `http://localhost:8080` (or the port shown by your server)
-
-### API Setup
-
-Make sure your grants database API is running on `http://localhost:5000` with the endpoint `/api/GrantSearch`.
-
-## File Structure
+## Project Structure
 
 ```
 WebApp/
-├── index.html          # Main HTML file
-├── app.js             # JavaScript application logic
-└── README.md          # This file
+├── index.html       # Main HTML file
+├── app.js          # JavaScript application logic
+└── README.md       # This file
 ```
 
-## Features in Detail
+## Features Explained
 
-### Search Functionality
-- Type keywords and press Enter or click Search
-- Real-time validation and error handling
-- Loading states with visual feedback
+### Relevance Scoring
 
-### Results Display
-- Cards with grant information
-- Relevance scoring (calculated as 1 - Distance)
-- Color-coded relevance indicators
-- Responsive grid layout
+- The app converts distance values to similarity percentages
+- Lower distance = higher relevance
+- Color-coded badges:
+  - 🟢 Green (80-100%): Highly relevant
+  - 🔵 Blue (60-79%): Very relevant
+  - 🟡 Yellow (40-59%): Moderately relevant
+  - 🟠 Orange (0-39%): Less relevant
 
 ### Error Handling
-- Network connection issues
-- API timeout handling
-- Empty results messaging
-- User-friendly error descriptions
+
+- Connection errors
+- Timeout handling (30 seconds)
+- API not found (404)
+- No results found
+- Invalid input validation
 
 ## Customization
 
-### Styling
-The application uses Tailwind CSS. To customize:
-- Modify classes in `index.html`
-- Add custom CSS in the `<style>` section
-- Adjust the color scheme by changing Tailwind color classes
+### Changing the API Endpoint
 
-### API Configuration
-Change the API endpoint in `app.js`:
+Edit the `API_ENDPOINT` constant in `app.js`:
 ```javascript
-const API_BASE_URL = 'your-api-endpoint-here';
+const API_ENDPOINT = 'http://your-api-url/api/GrantSearch';
 ```
 
-## Browser Support
+### Styling
 
-- Modern browsers (Chrome 60+, Firefox 60+, Safari 12+, Edge 79+)
-- Responsive design for mobile devices
-- Progressive enhancement for older browsers
+The application uses Tailwind CSS. You can customize colors and styles by:
+- Modifying the gradient colors in the header
+- Changing the color scheme in the CSS classes
+- Adjusting the custom CSS in the `<style>` section of `index.html`
+
+## Browser Compatibility
+
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+- Opera
 
 ## License
 
-This project is part of the pass-2025 repository.
+See LICENSE.txt in the project root.

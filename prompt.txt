@@ -1,3 +1,1 @@
-create a new WebApp folder and create a web app, using HTML5, Javascript and JQuery, to query a database of grants. The applications will call the REST endpoint http://localhost:5000/api/GrantSearch?SearchText='<text to be searched>'
-and the resulting json is something similar to what provided in dab-sample-result.json
-The app allows to search for grants related to a provided search text. Make it modern and nice looking. Use FluentUI look and feel.
+create a new WebApp folder and create a web app, using HTML5, Javascript and JQuery, to query a database of grants. The applications will call the REST endpoint http://localhost:5000/api/GrantSearch?SearchText='<text to be searched>’ and the resulting json is something similar to what provided in dab-sample-result.json The app allows to search for grants related to a provided search text. Make it modern and nice looking. Use Tailwind CSS look and feel.
