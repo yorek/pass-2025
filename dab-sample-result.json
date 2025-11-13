@@ -1,0 +1,18 @@
+{
+  "value": [
+    {
+      "GrantID": "8073818",
+      "Title": "Co-location visual pattern mining for near-duplicate image retrieval",
+      "Distance": 0.35605764389038086
+    },
+    {
+      "GrantID": "8457400",
+      "Title": "Patch-based texture histogram coding for fast image similarity search",
+      "Distance": 0.35742902755737305
+    },
+    {
+      "GrantID": "8606780",
+      "Title": "Image re-rank based on image annotations",
+      "Distance": 0.3782390356063843
+    }]
+}
