@@ -10,5 +10,10 @@ Sample 3
 
 connect to Microsoft SQL Server database specified in the MSSQL variable (read it from .env file) and build a website so that I can see the top 25 tables and their size (as row count and size in MB, GB etc). Make it nice and modern. Use Tailwind CSS. Tables must be ordered descending by their size.
 
+Sample 4
+
+connect to Microsoft SQL Server database specified in the MSSQL variable (read it from .env file) and build a website using streamlit so that I can get details from sys.dm_db_index_usage_stats
+
+
 
 
