@@ -1,11 +1,11 @@
 alter database current set compatibility_level = 170
+go
 
 --drop external model Text3Small
 --drop database scoped credential [https://dm-open-ai-3.openai.azure.com/]
-
 select * from sys.database_scoped_credentials
 select * from sys.external_models
-
+go
 
 create database scoped credential [https://ms-open-ai-3.openai.azure.com/]
 with 
@@ -27,3 +27,4 @@ select top(10)
     cast(AI_GENERATE_EMBEDDINGS(substring([Title] || ' ' || [Description],1, 500) use model Text3Small) as vector(1536))
 from
     [dbo].[grant_microsoft]
+go

@@ -1,1 +1,7 @@
-create a new WebApp folder and create a web app, using HTML5, Javascript and JQuery, to query a database of grants. The applications will call the REST endpoint http://localhost:5000/api/GrantSearch?SearchText='<text to be searched>’ and the resulting json is something similar to what provided in dab-sample-result.json The app allows to search for grants related to a provided search text. Make it modern and nice looking. Use Tailwind CSS look and feel.
+DAB
+
+I want to expose the stored procedure "dbo.SearchSimilarGrants" as a REST endpoint using Data API Builder. The endpoint must be named "GrantSearch". The database is SQL Server and the connection string is in the environment variable MSSQL. The stored procedure has a parameter named "SearchText". The endpoint connected to the stored procedure should answer to GET request and support QUERY graphql command. Also make sure to configure DAB to allow any CORS origin. The configuration file must be named dab-config.json. Use DAB CLI to do everything so that you can use the latest and greatest version of DAB.
+
+WEBAPP
+
+create a new WebApp folder and create a web app, using HTML5, Javascript and JQuery, to query a database of grants. The applications will call the REST endpoint http://localhost:5000/api/GrantSearch?SearchText='<text to be searched>’ and the resulting json is something similar to what provided in dab-sample-result.json The app allows to search for grants related to a provided search text. Make it modern and nice looking. Use Tailwind CSS look and feel. 
