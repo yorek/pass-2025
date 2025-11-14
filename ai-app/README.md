@@ -1,0 +1,7 @@
+# pass-2025
+
+dotnet tool install -g Microsoft.DataApiBuilder
+
+dab init --database-type mssql --connection-string '@env("MSSQL")'
+
+dab add GrantSearch --source "dbo.SearchSimilarGrants" --source.type "stored-procedure" --source.params "SearchText:" --permissions "anonymous:execute"

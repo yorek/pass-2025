@@ -1,0 +1,2 @@
+connect to Microsoft SQL Server database specified in the MSSQL variable (read it from .env file) and return the list of all tables
+
