@@ -1,0 +1,11 @@
+[project]
+name = "sample2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "mssql-python>=0.13.1",
+    "pyarrow>=18.1.0",
+]
