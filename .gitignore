@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Custom
 .env
+.azure.env
+.local.env
+

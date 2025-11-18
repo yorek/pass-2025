@@ -4,7 +4,7 @@ connect to Microsoft SQL Server database specified in the MSSQL variable (read i
 
 Sample 2
 
-connect to Microsoft SQL Server database specified in the MSSQL variable (read it from .env file) and export the data from the "dbo.grant_microsoft" into a parquet file. Since table is big, make sure to load the parquet file incrementally, to avoid to have to load all data in memory before writing it to the file. Never load the entire table in memory. Never execute a SELECT * FROM <table> without a WHERE clause. Load 1000 rows at time. On export the columns "GrantID, IssueDate, Kind, USSeriesCode, Title".
+connect to Microsoft SQL Server database specified in the MSSQL variable (read it from .env file) and export the data from the "dbo.grant_microsoft" into a parquet file. Since table is big, make sure to load the parquet file incrementally, to avoid to have to load all data in memory before writing it to the file. Never load the entire table in memory. Never execute a SELECT * FROM <table> without a WHERE clause. Load 1000 rows at time. Only export the columns "GrantID, IssueDate, Kind, USSeriesCode, Title".
 
 Sample 3
 
