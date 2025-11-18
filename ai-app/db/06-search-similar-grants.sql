@@ -1,3 +1,4 @@
+-- Return all the relevant grants given the provided search text
 create procedure dbo.SearchSimilarGrants
 @SearchText nvarchar(max)
 as
@@ -21,4 +22,5 @@ order by
 	Distance
 go
 
+-- Usage sample
 execute dbo.SearchSimilarGrants 'similar image identification using approximate nearest neighbor to find duplicate photos' 
