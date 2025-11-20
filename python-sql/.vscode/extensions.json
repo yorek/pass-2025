@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "mikestead.dotenv",
+        "ms-mssql.mssql",
+        "ms-python.python",
+        "ms-python.debugpy"
+    ]
+}
