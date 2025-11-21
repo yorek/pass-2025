@@ -2,6 +2,7 @@
     "recommendations": [
         "mikestead.dotenv",
         "humao.rest-client",
-        "ms-mssql.mssql"
+        "ms-mssql.mssql",
+        "github.copilot"
     ]
 }

@@ -3,6 +3,7 @@
         "mikestead.dotenv",
         "ms-mssql.mssql",
         "ms-python.python",
-        "ms-python.debugpy"
+        "ms-python.debugpy",
+        "github.copilot"
     ]
 }
